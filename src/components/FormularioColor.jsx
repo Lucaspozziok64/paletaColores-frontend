@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-const FormularioColor = () => {
+const FormularioColor = ({ agregarColor }) => {
   const [colorInput, setColorInput] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(colorInput)
+    agregarColor(colorInput)
   };
+  
   return (
     <form onSubmit={handleSubmit} className="d-flex justify-content-center align-items-center">
       <div className="w-100 text-center">
