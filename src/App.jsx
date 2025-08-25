@@ -23,7 +23,7 @@ function App() {
           <FormularioColor agregarColor={agregarColor} />
         </section>
       </main>
-      <Row className="container-fluid">
+      <Row className="container-fluid row-gap-3">
         {
           colores.map((color)=> 
             <ListaColores key={color.id} color={color} />
