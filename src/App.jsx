@@ -2,16 +2,21 @@ import FormularioColor from "./components/FormularioColor";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ListaColores from "./components/ListaColores";
 import { Row } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const [colores, setColores] = useState([]);
+  const colorLocalStorage = JSON.parse(localStorage.getItem("listaColores")) || [];
+  const [colores, setColores] = useState(colorLocalStorage);
 
   const agregarColor = (nuevoColor)=> {
     const nuevo = {id: uuidv4(), nombreColor: nuevoColor}
     setColores([...colores, nuevo])
   }
+
+  useEffect(()=> {
+    localStorage.setItem("listaColores", JSON.stringify(colores))
+  }, [colores])
 
   return (
     <>
