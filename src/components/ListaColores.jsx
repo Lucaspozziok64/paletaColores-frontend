@@ -2,7 +2,7 @@ import { CardFooter, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-const ListaColores = ({ color }) => {
+const ListaColores = ({ color, borrarColor }) => {
   return (
     <Col sm={12} md={4} lg={3}>
       <Card>
@@ -13,7 +13,7 @@ const ListaColores = ({ color }) => {
             <strong className="text-light"> {color.nombreColor}</strong>
           </Card.Text>
           <CardFooter className="text-center p-0">
-            <Button className="" variant="danger">
+            <Button variant="danger" onClick={borrarColor}>
               Eliminar
             </Button>
           </CardFooter>

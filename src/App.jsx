@@ -14,6 +14,11 @@ function App() {
     setColores([...colores, nuevo])
   }
 
+  const borrarColor = (id)=> {
+    setColores(colores.filter(c => c.id !== id));
+    console.log(id)
+  }
+
   useEffect(()=> {
     localStorage.setItem("listaColores", JSON.stringify(colores))
   }, [colores])
@@ -31,7 +36,7 @@ function App() {
       <Row className="container-fluid row-gap-3">
         {
           colores.map((color)=> 
-            <ListaColores key={color.id} color={color} />
+            <ListaColores key={color.id} color={color} borrarColor={()=> borrarColor(color.id)} />
           )
         }
       </Row>
