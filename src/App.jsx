@@ -5,6 +5,7 @@ import { Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   const colorLocalStorage =
