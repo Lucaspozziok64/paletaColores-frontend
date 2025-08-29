@@ -11,6 +11,7 @@ function App() {
   const colorLocalStorage =
     JSON.parse(localStorage.getItem("listaColores")) || [];
   const [colores, setColores] = useState(colorLocalStorage);
+  const [colorEditando, setColorEditando] = useState(null)
 
   const agregarColor = (nuevoColor) => {
     const nuevo = { id: uuidv4(), nombreColor: nuevoColor };
@@ -57,7 +58,7 @@ function App() {
           Bienvenido a la aplicacion paleta de Colores
         </h1>
         <section className="container my-5 bg-body-tertiary rounded-3">
-          <FormularioColor agregarColor={agregarColor} />
+          <FormularioColor agregarColor={agregarColor} colorEditando={colorEditando} setColorEditando={setColorEditando} setColores={setColores} colores={colores} />
         </section>
         <Row className="container-fluid row-gap-4">
           {colores.map((color) => (
@@ -65,6 +66,7 @@ function App() {
               key={color.id}
               color={color}
               borrarColor={() => borrarColor(color.id)}
+              setColorEditando={setColorEditando}
             />
           ))}
         </Row>

@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const FormularioColor = ({ agregarColor }) => {
+const FormularioColor = ({ agregarColor, colorEditando, setColorEditando, setColores, colores }) => {
   const [colorInput, setColorInput] = useState("");
+
+  useEffect(()=> {
+      if(colorEditando && colorEditando.nombreColor) {
+        setColorInput(colorEditando.nombreColor);
+    }
+  }, [colorEditando])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +21,25 @@ const FormularioColor = ({ agregarColor }) => {
       });
       return;
     }
-    agregarColor(colorInput)
+    if(colorEditando) {
+      const coloresActualizados = colores.map((color)=>
+          color.id === colorEditando.id
+          ? { ...color, nombreColor: colorInput }
+          : color
+        );
+        setColores(coloresActualizados)
+        setColorEditando(null)
+        setColorInput('');
+        Swal.fire({
+        icon: "success",
+        title: "Color editado correctamente",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+    } else {
+      agregarColor(colorInput)
+    }
   };
   
   return (
@@ -30,10 +54,10 @@ const FormularioColor = ({ agregarColor }) => {
             type="color"
             className="mx-3 mb-1"
             onChange={(e) => setColorInput(e.target.value)}
-            value={colorInput}
+            value={colorInput || "#000000"} // fallback si el valor es vacío
           />
           <button type="submit" className="btn btn-success botonAgregar">
-            <i className="bi bi-plus-circle mx-1 text-white"></i>Agregar
+            <i className="bi bi-plus-circle mx-1 text-white"></i>{colorEditando ? "Guardar cambios" : "Agregar"}
           </button>
         </div>
       </div>
