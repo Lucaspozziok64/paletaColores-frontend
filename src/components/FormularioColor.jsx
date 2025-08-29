@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const FormularioColor = ({ agregarColor }) => {
   const [colorInput, setColorInput] = useState("");
@@ -6,6 +7,14 @@ const FormularioColor = ({ agregarColor }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(colorInput)
+    if (!colorInput.trim()) {
+      Swal.fire({
+        title: "Debes elegir un color, haciendo click en el recuadro del input",
+        text: "Asi no funciona!😉",
+        icon: "warning",
+      });
+      return;
+    }
     agregarColor(colorInput)
   };
   
