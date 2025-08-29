@@ -53,21 +53,21 @@ function App() {
     <>
       <main className="container">
         <h1 className="text-center text-light my-5">
-          Bienvenido al frontend de paleta de Colores
+          Bienvenido a la aplicacion paleta de Colores
         </h1>
         <section className="container my-5 bg-body-tertiary rounded-3">
           <FormularioColor agregarColor={agregarColor} />
         </section>
+        <Row className="container-fluid row-gap-4">
+          {colores.map((color) => (
+            <ListaColores
+              key={color.id}
+              color={color}
+              borrarColor={() => borrarColor(color.id)}
+            />
+          ))}
+        </Row>
       </main>
-      <Row className="container-fluid row-gap-3">
-        {colores.map((color) => (
-          <ListaColores
-            key={color.id}
-            color={color}
-            borrarColor={() => borrarColor(color.id)}
-          />
-        ))}
-      </Row>
     </>
   );
 }

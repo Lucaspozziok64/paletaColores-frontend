@@ -5,15 +5,15 @@ import Card from "react-bootstrap/Card";
 const ListaColores = ({ color, borrarColor }) => {
   return (
     <Col sm={12} md={4} lg={3}>
-      <Card>
-        <Card.Body className="rounded-2" style={{ background: color.nombreColor }}>
-          <Card.Title className="text-center">Color</Card.Title>
-          <Card.Text className="text-center">
-            El color hexadecimal es:
-            <strong className="text-light"> {color.nombreColor}</strong>
+      <Card className="cardColores">
+        <Card.Body className="rounded-2 p-0">
+          <Card.Title className="text-center p-3 text-light mb-0"style={{ background: color.nombreColor }}>Color elegido</Card.Title>
+          <Card.Text className="text-center bg-dark-subtle mb-0 p-2">
+            El nombre color hexadecimal es:
+            <strong className="text-dark"> {color.nombreColor}</strong>
           </Card.Text>
           <CardFooter className="text-center p-0">
-            <Button variant="danger" onClick={borrarColor}>
+            <Button variant="danger" className="my-1" onClick={borrarColor}>
               Eliminar
             </Button>
           </CardFooter>
