@@ -5,15 +5,27 @@ import { Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const colorLocalStorage =
     JSON.parse(localStorage.getItem("listaColores")) || [];
   const [colores, setColores] = useState(colorLocalStorage);
-  const [colorEditando, setColorEditando] = useState(null)
+  const [colorEditando, setColorEditando] = useState(null);
 
   const agregarColor = (nuevoColor) => {
+    const yaExiste = colores.some(
+      (color) => color.nombreColor.toLowerCase() === nuevoColor.toLowerCase()
+    );
+
+    if (yaExiste) {
+      Swal.fire({
+        icon: "warning",
+        title: "Color duplicado",
+        text: "Ya existe un color con ese código",
+      });
+      return; // salimos sin agregar
+    }
     const nuevo = { id: uuidv4(), nombreColor: nuevoColor };
     setColores([...colores, nuevo]);
     Swal.fire({
@@ -58,7 +70,13 @@ function App() {
           Bienvenido a la aplicacion paleta de Colores
         </h1>
         <section className="container my-5 bg-body-tertiary rounded-3">
-          <FormularioColor agregarColor={agregarColor} colorEditando={colorEditando} setColorEditando={setColorEditando} setColores={setColores} colores={colores} />
+          <FormularioColor
+            agregarColor={agregarColor}
+            colorEditando={colorEditando}
+            setColorEditando={setColorEditando}
+            setColores={setColores}
+            colores={colores}
+          />
         </section>
         <Row className="container-fluid row-gap-4">
           {colores.map((color) => (

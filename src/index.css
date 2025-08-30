@@ -19,7 +19,7 @@
 }
 
 .cardColores {
-box-shadow: -1px 3px 17px 4px rgba(231,235,22,1);
--webkit-box-shadow: -1px 3px 17px 4px rgba(231,235,22,1);
--moz-box-shadow: -1px 3px 17px 4px rgba(231,235,22,1);
+  box-shadow: -1px 3px 17px 4px rgba(231, 235, 22, 1);
+  -webkit-box-shadow: -1px 3px 17px 4px rgba(231, 235, 22, 1);
+  -moz-box-shadow: -1px 3px 17px 4px rgba(231, 235, 22, 1);
 }
