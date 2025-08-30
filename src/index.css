@@ -18,6 +18,10 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+main {
+  flex-grow: 1;
+}
+
 .cardColores {
   box-shadow: -1px 3px 17px 4px rgba(231, 235, 22, 1);
   -webkit-box-shadow: -1px 3px 17px 4px rgba(231, 235, 22, 1);

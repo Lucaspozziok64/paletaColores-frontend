@@ -89,6 +89,9 @@ function App() {
           ))}
         </Row>
       </main>
+      <footer className="bg-dark text-center text-light p-2">
+        <p className="mb-0">Desarrollado por <a href="https://github.com/Lucaspozziok64">Lucas Figueroa</a>👨‍💻</p>
+      </footer>
     </>
   );
 }
