@@ -65,6 +65,11 @@ function App() {
 
   return (
     <>
+      <nav dir="rtl" className="bg-dark text-light">
+        <div className="texto-corredizo fs-5">
+          😎¡ Elegi tu color favorito y obtene su nombre en Hexadecimal !🎨
+        </div>
+      </nav>
       <main className="container">
         <h1 className="text-center text-light my-5">
           Bienvenido a la aplicacion paleta de Colores
@@ -90,7 +95,10 @@ function App() {
         </Row>
       </main>
       <footer className="bg-dark text-center text-light p-2">
-        <p className="mb-0">Desarrollado por <a href="https://github.com/Lucaspozziok64">Lucas Figueroa</a>👨‍💻</p>
+        <p className="mb-0">
+          Desarrollado por{" "}
+          <a href="https://github.com/Lucaspozziok64">Lucas Figueroa</a>👨‍💻
+        </p>
       </footer>
     </>
   );

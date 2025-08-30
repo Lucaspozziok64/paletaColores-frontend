@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
+
 #root {
   display: flex;
   flex-direction: column;
@@ -22,8 +24,59 @@ main {
   flex-grow: 1;
 }
 
+nav {
+  padding: 10px;
+  overflow: hidden;
+  direction: rtl;
+  white-space: nowrap;
+}
+
+.texto-corredizo {
+  display: inline-block;
+  animation: moverTexto 10s linear infinite;
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes moverTexto {
+  0% {
+    transform: translateX(
+      100%
+    ); /* Comienza fuera de la pantalla a la derecha */
+  }
+  100% {
+    transform: translateX(
+      -250%
+    ); /* Termina fuera de la pantalla a la izquierda */
+  }
+}
+
 .cardColores {
   box-shadow: -1px 3px 17px 4px rgba(231, 235, 22, 1);
   -webkit-box-shadow: -1px 3px 17px 4px rgba(231, 235, 22, 1);
   -moz-box-shadow: -1px 3px 17px 4px rgba(231, 235, 22, 1);
+}
+
+@media (max-width: 767px) {
+  .texto-corredizo {
+  display: inline-block;
+  animation: moverTexto 10s linear infinite;
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes moverTexto {
+  0% {
+    transform: translateX(
+      100%
+    );
+  }
+  100% {
+    transform: translateX(
+      -100%
+    );
+  }
+}
 }
