@@ -21,4 +21,82 @@ Aplicación frontend para gestionar paletas de colores con operaciones CRUD comp
 🚀 Demo en vivo
 - 
 - Puedes probar la aplicación directamente:
-- ![Paleta Colores](https://creatuscolores.netlify.app/)
+- https://creatuscolores.netlify.app/
+
+####
+🛠️ Tecnologías utilizadas
+- 
+Frontend
+
+- React 18.2.0 - Framework principal
+- React-Bootstrap 2.8.0 - Componentes UI
+- Bootstrap Icons - Iconografía
+- SweetAlert2 11.7.0 - Alertas y mensajes
+- Axios - Cliente HTTP para APIs
+
+Backend (Repositorio separado)
+
+- Node.js + Express - Servidor API
+- MongoDB Atlas - Base de datos en la nube
+- Mongoose - ODM para MongoDB
+- CORS - Configuración de dominios cruzados
+
+####
+>
+🚀 Instalación y desarrollo local
+- 
+- Clona el repositorio:
+````
+git clone https://github.com/Lucaspozziok64/paletaColores-frontend.git
+cd tu-repo-frontend
+````
+- Instala dependencias:
+````
+npm install
+````
+
+- Configura variables de entorno:
+````
+cp .env.example .env
+# Edita .env con tus valores reales
+````
+
+- Inicia el servidor de desarrollo:
+````
+cp .env.example .env
+npm start
+````
+
+- Abre tu navegador en:
+````
+http://localhost:3000
+````
+
+🌐 Deployment en Netlify
+- 
+Configuración en Netlify:
+
+- Build command: npm run build
+- Publish directory: build
+- Environment variables: Configuradas en el dashboard de Netlify
+
+Variables de entorno requeridas:
+````
+REACT_APP_API_URL=https://tu-backend.herokuapp.com/api
+REACT_APP_API_TIMEOUT=5000
+````
+
+####
+🤝 Contribución
+- 
+- Haz fork del proyecto
+- Crea una rama para tu feature: git checkout -b feature/nueva-funcionalidad
+- Commit tus cambios: git commit -m 'Agrega nueva funcionalidad'
+- Push a la rama: git push origin feature/nueva-funcionalidad
+
+####
+👨‍💻 Autor
+- 
+- Lucas Figueroa
+- 💼 [LinkedIn](https://linkedin.com/in/lucas-figueroa-579b0b30b)
+- 📬 lukafigueroa64@gmail.com
