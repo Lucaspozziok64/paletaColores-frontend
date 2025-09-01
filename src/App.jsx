@@ -54,6 +54,7 @@ function App() {
 
     const respuesta = await crearColor(nuevo);
     if (respuesta.status === 201) {
+      await obtenerColores()
       Swal.fire({
         title: "Producto Creado!",
         text: `El producto ${nuevoColor.nombreColor} fue creado correctamente`,
