@@ -76,6 +76,7 @@ function App() {
       if (result.isConfirmed) {
         const respuesta = await borrarColoresPorId(id);
         if (respuesta.status === 200) {
+          await obtenerColores();
         console.log(id);
         Swal.fire({
           title: "Eliminado!",
