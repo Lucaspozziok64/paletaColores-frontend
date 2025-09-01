@@ -27,6 +27,23 @@ const FormularioColor = ({
       });
       return;
     }
+    const colorNuevo = colorInput.toLowerCase().trim();
+
+    // Validar si el color ya existe en otro registro
+    const duplicado = listaDeColores.some(
+      (color) =>
+        color.nombreColor.toLowerCase().trim() === colorNuevo &&
+        color._id !== colorEditando._id // excluye el color que estás editando
+    );
+
+    if (duplicado) {
+      Swal.fire({
+        icon: "warning",
+        title: "Color duplicado",
+        text: "Ya existe un color con ese código. Elegí otro 😉",
+      });
+      return;
+    }
     if (colorEditando) {
       const colorActualizado = { nombreColor: colorInput };
 
