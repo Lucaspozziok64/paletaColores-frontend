@@ -97,6 +97,18 @@ const FormularioColor = ({
             <i className="bi bi-plus-circle mx-1 text-white"></i>
             {colorEditando ? "Guardar cambios" : "Agregar"}
           </button>
+          {colorEditando && (
+            <button
+              type="button"
+              className="btn btn-danger ms-2"
+              onClick={() => {
+                setColorEditando(null);
+                setColorInput("");
+              }}
+            >
+              Cancelar
+            </button>
+          )}
         </div>
       </div>
     </form>
