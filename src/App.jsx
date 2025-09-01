@@ -51,16 +51,6 @@ function App() {
       showConfirmButton: false,
       timer: 1500,
     });
-
-    const respuesta = await crearColor(nuevo);
-    if (respuesta.status === 201) {
-      await obtenerColores()
-      Swal.fire({
-        title: "Producto Creado!",
-        text: `El producto ${nuevoColor.nombreColor} fue creado correctamente`,
-        icon: "success",
-      });
-    }
   };
 
   const borrarColor = (id) => {
@@ -72,17 +62,16 @@ function App() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, eliminar!",
-    }).then(async(result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         const respuesta = await borrarColoresPorId(id);
         if (respuesta.status === 200) {
           await obtenerColores();
-        console.log(id);
-        Swal.fire({
-          title: "Eliminado!",
-          text: "El color ha sido eliminado",
-          icon: "success",
-        });
+          Swal.fire({
+            title: "Eliminado!",
+            text: "El color ha sido eliminado",
+            icon: "success",
+          });
         }
       }
     });

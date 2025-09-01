@@ -19,7 +19,6 @@ const FormularioColor = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(colorInput);
     if (!colorInput.trim()) {
       Swal.fire({
         title: "Debes elegir un color, haciendo click en el recuadro del input",
