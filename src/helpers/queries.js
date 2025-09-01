@@ -1,4 +1,4 @@
-const urlColores = import.meta.env.API_VITE_COLORES
+const urlColores = import.meta.env.VITE_API_COLORES
 
 console.log(urlColores);
 

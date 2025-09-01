@@ -6,12 +6,29 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { leerColores } from "./helpers/queries";
 
 function App() {
   const colorLocalStorage =
     JSON.parse(localStorage.getItem("listaColores")) || [];
   const [colores, setColores] = useState(colorLocalStorage);
   const [colorEditando, setColorEditando] = useState(null);
+  const [listaDeColores, setListaDeColores] = useState([]);
+
+  useEffect(()=> {
+    obtenerColores();
+  }, [])
+
+  const obtenerColores =async ()=> {
+    const respuesta = await leerColores()
+    if(respuesta.status === 200) {
+      const datos = await respuesta.json()
+      setListaDeColores(datos)
+    } else {
+      console.log('Ocurrio un error al intentar leer los productos')
+    }
+  }
+
 
   const agregarColor = (nuevoColor) => {
     const yaExiste = colores.some(
@@ -59,10 +76,6 @@ function App() {
     });
   };
 
-  useEffect(() => {
-    localStorage.setItem("listaColores", JSON.stringify(colores));
-  }, [colores]);
-
   return (
     <>
       <nav dir="rtl" className="bg-dark text-light">
@@ -84,7 +97,7 @@ function App() {
           />
         </section>
         <Row className="container-fluid row-gap-4">
-          {colores.map((color) => (
+          {listaDeColores.map((color) => (
             <ListaColores
               key={color.id}
               color={color}
