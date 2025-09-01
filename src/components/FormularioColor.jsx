@@ -73,6 +73,7 @@ const FormularioColor = ({
       }
     } else {
       agregarColor(colorInput);
+      setColorInput("")
     }
   };
 
