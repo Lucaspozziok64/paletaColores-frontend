@@ -18,10 +18,10 @@ const ListaColores = ({ color, setColorEditando, borrarColor }) => {
             <strong className="text-dark"> {color.nombreColor}</strong>
           </Card.Text>
           <CardFooter className="text-center p-0">
-            <Button variant="warning" className="mx-2" onClick={()=> setColorEditando(color)}>
+            <Button variant="warning" className="mx-2" onClick={()=> setColorEditando(color._id)}>
               <i className="bi bi-pencil-square"></i>
             </Button>
-            <Button variant="danger" className="my-1" onClick={borrarColor}>
+            <Button variant="danger" className="my-1" onClick={borrarColor._id}>
               Eliminar
             </Button>
           </CardFooter>

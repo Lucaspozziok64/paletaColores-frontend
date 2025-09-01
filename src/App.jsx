@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { leerColores } from "./helpers/queries";
+import { crearColor, leerColores } from "./helpers/queries";
 
 function App() {
   const colorLocalStorage =
@@ -15,22 +15,21 @@ function App() {
   const [colorEditando, setColorEditando] = useState(null);
   const [listaDeColores, setListaDeColores] = useState([]);
 
-  useEffect(()=> {
+  useEffect(() => {
     obtenerColores();
-  }, [])
+  }, []);
 
-  const obtenerColores =async ()=> {
-    const respuesta = await leerColores()
-    if(respuesta.status === 200) {
-      const datos = await respuesta.json()
-      setListaDeColores(datos)
+  const obtenerColores = async () => {
+    const respuesta = await leerColores();
+    if (respuesta.status === 200) {
+      const datos = await respuesta.json();
+      setListaDeColores(datos);
     } else {
-      console.log('Ocurrio un error al intentar leer los productos')
+      console.log("Ocurrio un error al intentar leer los productos");
     }
-  }
+  };
 
-
-  const agregarColor = (nuevoColor) => {
+  const agregarColor = async (nuevoColor) => {
     const yaExiste = colores.some(
       (color) => color.nombreColor.toLowerCase() === nuevoColor.toLowerCase()
     );
@@ -44,7 +43,7 @@ function App() {
       return; // salimos sin agregar
     }
     const nuevo = { id: uuidv4(), nombreColor: nuevoColor };
-    setColores([...colores, nuevo]);
+    setListaDeColores([...listaDeColores, nuevo]);
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -52,6 +51,15 @@ function App() {
       showConfirmButton: false,
       timer: 1500,
     });
+
+    const respuesta = await crearColor(nuevo);
+    if (respuesta.status === 201) {
+      Swal.fire({
+        title: "Producto Creado!",
+        text: `El producto ${nuevoColor.nombreColor} fue creado correctamente`,
+        icon: "success",
+      });
+    }
   };
 
   const borrarColor = (id) => {
@@ -99,9 +107,9 @@ function App() {
         <Row className="container-fluid row-gap-4">
           {listaDeColores.map((color) => (
             <ListaColores
-              key={color.id}
+              key={color._id || color.id}
               color={color}
-              borrarColor={() => borrarColor(color.id)}
+              borrarColor={() => borrarColor(color._id)}
               setColorEditando={setColorEditando}
             />
           ))}
