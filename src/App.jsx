@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { crearColor, leerColores } from "./helpers/queries";
+import { borrarColoresPorId, crearColor, leerColores } from "./helpers/queries";
 
 function App() {
   const colorLocalStorage =
@@ -72,15 +72,17 @@ function App() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, eliminar!",
-    }).then((result) => {
+    }).then(async(result) => {
       if (result.isConfirmed) {
-        setColores(colores.filter((c) => c.id !== id));
+        const respuesta = await borrarColoresPorId(id);
+        if (respuesta.status === 200) {
         console.log(id);
         Swal.fire({
           title: "Eliminado!",
           text: "El color ha sido eliminado",
           icon: "success",
         });
+        }
       }
     });
   };
