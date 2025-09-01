@@ -44,13 +44,17 @@ function App() {
     }
     const nuevo = { id: uuidv4(), nombreColor: nuevoColor };
     setListaDeColores([...listaDeColores, nuevo]);
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Color agregado exitosamente",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    const respuesta = await crearColor(nuevo);
+    if (respuesta.status === 200) {
+      await obtenerColores();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Color agregado exitosamente",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
   const borrarColor = (id) => {
