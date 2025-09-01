@@ -88,7 +88,7 @@ function App() {
           😎¡ Elegi tu color favorito y obtene su nombre en Hexadecimal !🎨
         </div>
       </nav>
-      <main className="container">
+      <main className="container my-5">
         <h1 className="text-center text-light my-5">
           Bienvenido a la aplicacion paleta de Colores
         </h1>
