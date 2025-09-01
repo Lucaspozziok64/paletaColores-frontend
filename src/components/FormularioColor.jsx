@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { editarColorPorId, leerColores } from "../helpers/queries";
 
 const FormularioColor = ({
   agregarColor,
   colorEditando,
   setColorEditando,
-  setColores,
-  colores,
+  listaDeColores,
+  setListaDeColores,
 }) => {
   const [colorInput, setColorInput] = useState("");
 
@@ -16,7 +17,7 @@ const FormularioColor = ({
     }
   }, [colorEditando]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(colorInput);
     if (!colorInput.trim()) {
@@ -28,20 +29,32 @@ const FormularioColor = ({
       return;
     }
     if (colorEditando) {
-      const coloresActualizados = colores.map((color) =>
-        color.id === colorEditando.id
-          ? { ...color, nombreColor: colorInput }
-          : color
+      const colorActualizado = { nombreColor: colorInput };
+
+      const respuesta = await editarColorPorId(
+        colorEditando._id,
+        colorActualizado
       );
-      setColores(coloresActualizados);
-      setColorEditando(null);
-      setColorInput("");
-      Swal.fire({
-        icon: "success",
-        title: "Color editado correctamente",
-        timer: 1500,
-        showConfirmButton: false,
-      });
+      if (respuesta && respuesta.status === 200) {
+        const coloresActualizados = await leerColores();
+        const lista = await coloresActualizados.json();
+        setListaDeColores(lista);
+        setColorEditando(null);
+        setColorInput("");
+
+        Swal.fire({
+          icon: "success",
+          title: "Color editado correctamente",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "No se pudo editar el color",
+          text: "Verificá la conexión con la base de datos",
+        });
+      }
     } else {
       agregarColor(colorInput);
     }

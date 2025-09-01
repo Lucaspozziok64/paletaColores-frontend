@@ -30,7 +30,7 @@ function App() {
   };
 
   const agregarColor = async (nuevoColor) => {
-    const yaExiste = colores.some(
+    const yaExiste = listaDeColores.some(
       (color) => color.nombreColor.toLowerCase() === nuevoColor.toLowerCase()
     );
 
@@ -104,8 +104,8 @@ function App() {
             agregarColor={agregarColor}
             colorEditando={colorEditando}
             setColorEditando={setColorEditando}
-            setColores={setColores}
-            colores={colores}
+            listaDeColores={listaDeColores}
+            setListaDeColores={setListaDeColores}
           />
         </section>
         <Row className="container-fluid row-gap-4">
